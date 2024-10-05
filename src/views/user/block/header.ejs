@@ -76,11 +76,14 @@
         <div class="col-lg-6 col-6 text-left">
             <form action="/search" method="GET">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Nhập sản phẩm..." name="product_name">
+                    <input type="text" class="form-control" placeholder="Nhập sản phẩm..." name="product_name" required>
                     <div class="input-group-append">
-                        <span class="input-group-text bg-transparent text-primary">
+                        <!-- <span class="input-group-text bg-transparent text-primary">
                             <i class="fa fa-search"></i>
-                        </span>
+                        </span> -->
+                        <button type="submit" class="btn bg-transparent text-primary">
+                            <i class="fa fa-search"></i>
+                        </button>
                     </div>
                 </div>
             </form>
@@ -145,6 +148,7 @@
                                         <% } %>
                             </div>
                         </li>
+                        <a href="#" class="nav-item nav-link">About</a>
                         <% if(UserId) { %>
                             <li style="margin-top: 20px;margin-right: 20px;margin-left: 20px;"
                                 class="nav-item navbar-link dropdown">

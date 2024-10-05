@@ -7,13 +7,21 @@ const apiCategory = require("../../api/admin/apiCategory");
 const apiBrand = require("../../api/admin/apiBrand");
 const apiAuth = require("../../api/admin/apiAuth");
 const middleware = require("../../middleware/middleware");
-
+const thongke = require("../../controllers/admin/thongkeController");
 //home
 router.get(
   "/dashboard",
   middleware.checkRequireLoginAdmin,
   apiProduct.indexproduct
 );
+
+router.get(
+  "/thongke",
+  middleware.checkRequireLoginAdmin,
+  thongke.getthongke
+);
+
+
 //login
 router.post("/login", apiAuth.handleLoginAdmin);
 router.get("/", middleware.checkLoginAdmin);

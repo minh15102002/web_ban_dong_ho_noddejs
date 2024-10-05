@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thống kê</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+<%- include("./block/style.ejs") %>
+<body>
+    <%- include("./block/siderbar.ejs") %>
+    <div style="margin-left: 20% ;margin-right: 5%;margin-top: 30px;">
+        <h1>Bảng điều khiển</h1>
+        
+        <!-- Bảng Thống Kê -->
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Khách hàng</th>
+                    <th>Đơn hàng</th>
+                    <th>Doanh thu</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><%= summary.customer_count %></td>
+                    <td><%= summary.order_count %></td>
+                    <td><%= summary.revenue %>đ</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Biểu đồ doanh thu theo danh mục sản phẩm -->
+        <div id="bar"></div>
+        <div id="line"></div>
+        <div id="donut"></div>
+
+        <script>
+            // Biểu đồ Bar
+            var optionsBar = {
+                series: [{
+                    name: 'Đã thanh toán',
+                    data: [44, 55, 57, 56, 61, 58, 63, 60, 66] // Thay thế bằng dữ liệu thực
+                }, {
+                    name: 'Đã hủy',
+                    data: [76, 85, 101, 98, 87, 105, 91, 114, 94] // Thay thế bằng dữ liệu thực
+                }],
+                chart: {
+                    type: 'bar',
+                    height: 350
+                },
+                xaxis: {
+                    categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct']
+                }
+            };
+
+            var chartBar = new ApexCharts(document.querySelector('#bar'), optionsBar);
+            chartBar.render();
+
+            // Biểu đồ Line
+            var optionsLine = {
+                chart: {
+                    height: 340,
+                    type: 'line',
+                },
+                series: [{
+                    name: "Doanh thu",
+                    data: [31, 40, 28, 51, 42, 109, 100] // Thay thế bằng dữ liệu thực
+                }],
+                xaxis: {
+                    categories: ["2024-09-19T00:00:00.000Z", "2024-09-19T01:30:00.000Z", "2024-09-19T02:30:00.000Z",
+                                 "2024-09-19T03:30:00.000Z", "2024-09-19T04:30:00.000Z", "2024-09-19T05:30:00.000Z",
+                                 "2024-09-19T06:30:00.000Z"]
+                }
+            };
+
+            var chartLine = new ApexCharts(document.querySelector('#line'), optionsLine);
+            chartLine.render();
+
+            // Biểu đồ Donut
+            var optionDonut = {
+                chart: {
+                    type: 'donut',
+                    width: '100%',
+                    height: 400
+                },
+                series: [21, 23, 19, 14, 6], // Thay thế bằng dữ liệu thực
+                labels: ['Đồng hồ nam', 'Đồng hồ nữ', 'Đồng hồ đôi', 'Phụ kiện', 'Khác']
+            };
+
+            var donut = new ApexCharts(document.querySelector("#donut"), optionDonut);
+            donut.render();
+        </script>
+    </div>
+</body>
+</html>
