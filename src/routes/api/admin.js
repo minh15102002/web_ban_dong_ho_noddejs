@@ -6,7 +6,9 @@ const userController = require("../../controllers/admin/userController");
 const categoryController = require("../../controllers/admin/categoryController");
 const brandController = require("../../controllers/admin/brandController");
 const authController = require("../../controllers/admin/authController");
+const middleware = require("../../middleware/middleware");
 //login admin
+router.get("/login", middleware.checkLoginAdmin);
 router.post("/login", authController.loginAmin);
 router.get("/authenticate/:token", authController.authAdmin);
 //product
