@@ -7,6 +7,14 @@ const apiCategory = require("../../api/user/apiCategory");
 const apiBrand = require("../../api/user/apiBrand");
 const cart = require("../../store/cart");
 const middleware = require("../../middleware/middleware");
+// const apiAccount = require("../../api/user/account");
+const paymentController = require("../../controllers/checkout");
+
+// Trong controller của bạn (checkout.js)
+router.post('/checkout',paymentController.createCheckoutSession);
+router.get('/complete', paymentController.handlePaymentSuccess);
+
+
 
 router.get("/", apiProduct.getProductHome);
 
@@ -28,6 +36,7 @@ router.get("/detail/:id", apiProduct.getProductDetail);
 
 router.get("/addCart/:id", cart.handleAddCart);
 router.get("/cart", (req, res) => {
+  
   let erro = req.flash("erro");
   let success = req.flash("success");
   let carts = req.session.cart;
@@ -50,4 +59,21 @@ router.get("/search", apiProduct.getProductSearch);
 router.get("/categories/:category_id", apiCategory.getProductCategory);
 router.get("/brands/:brand_id", apiBrand.getProductBrand);
 
+
+
+const apiAccount = require("../../controllers/user/accountController");
+router.get("/account", apiAccount.indexAccount);
+// router.put('/account/:user_id', apiAccount.updateAccount);
+
+
+
+const forgotPasswordController = require('../../controllers/user/forgotpassord');
+router.get('/forgot-password', (req, res) => {
+  res.render('user/forgotPassword.ejs', { title: 'Quên Mật Khẩu' });
+});
+router.post('/forgot-password', forgotPasswordController.forgotPassword);
+router.post('/reset-password', forgotPasswordController.resetPassword);
+router.get('/reset-password', (req, res) => {
+  res.render('user/resetPassword.ejs', { title: 'sửa Mật Khẩu' });
+});
 module.exports = router;

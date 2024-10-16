@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <title>Tài Khoản Của Tôi</title>
+    <link rel="stylesheet" href="/path/to/your/css/styles.css"> 
+    <%- include('./block/style.ejs') %>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 100%; 
+            margin: auto; 
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-icon {
+            display: block;
+            width: 80px; /* Kích thước icon */
+            height: 80px;
+            margin: 0 auto 20px; /* Giữa và tạo khoảng cách phía dưới */
+            border-radius: 50%; /* Hình tròn */
+            background-color: #e0e0e0; /* Màu nền cho icon */
+            position: relative; /* Để đặt biểu tượng sửa đổi */
+        }
+
+        .profile-icon img {
+            width: 100%; /* Đảm bảo ảnh chiếm toàn bộ icon */
+            border-radius: 50%;
+        }
+
+        .edit-icon {
+            position: absolute;
+            bottom: 0; /* Đặt ở phía dưới */
+            right: 0; /* Đặt ở bên phải */
+            background-color: white;
+            border-radius: 50%;
+            padding: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 15px; /* Khoảng cách giữa các nhóm trường */
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px; /* Khoảng cách giữa nhãn và trường nhập */
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .gender-group {
+            display: flex; /* Để sắp xếp các radio button theo hàng */
+            justify-content: space-between; /* Giữa các button */
+            margin-top: 5px; /* Khoảng cách trên */
+        }
+
+        .save-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF; /* Màu xanh */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s; /* Hiệu ứng chuyển màu */
+        }
+
+        .save-button:hover {
+            background-color: #0056b3; /* Màu xanh đậm khi hover */
+        }
+
+        .account-info {
+            margin-top: 20px; /* Khoảng cách giữa thông tin cá nhân và thông tin tài khoản */
+        }
+
+        .account-info h1 {
+            text-align: center; /* Giữa tiêu đề thông tin tài khoản */
+        }
+    </style>
+</head><%- include('./block/header.ejs') %>
+<body>
+    
+    <div class="container">
+        <h2>Thông tin cá nhân</h2>
+        <div class="profile-icon">
+            <img src="path_to_your_image.png" alt="Profile Image"> 
+            <div class="edit-icon">✏️</div> 
+        </div>
+
+        <div class="form-group">
+            <label for="fullname">Họ & Tên:</label>
+            <input type="text" id="fullname" name="name" class="input-field" value="<%= user.name %>">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" class="input-field" value="<%= user.email %>">
+        </div>
+
+        <div class="form-group">
+            <label>Ngày sinh:</label>
+            <div>
+                <select class="input-field">
+                    <option>Ngày</option>
+                </select>
+                <select class="input-field">
+                    <option>Tháng</option>
+                </select>
+                <select class="input-field">
+                    <option>Năm</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Giới tính:</label>
+            <div class="gender-group">
+                <label><input type="radio" name="gender" value="male"> Nam</label>
+                <label><input type="radio" name="gender" value="female" checked> Nữ</label>
+                <label><input type="radio" name="gender" value="other"> Khác</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="nationality">Quốc tịch:</label>
+            <select id="nationality" class="input-field">
+                <option>Chọn quốc tịch</option>
+            </select>
+        </div>
+
+        <button class="save-button">Lưu thay đổi</button>
+    </div>
+
+    <div class="account-info">
+        <h1>Thông tin tài khoản</h1>
+        <form action="/account/update" method="POST">
+            <div class="form-group">
+                <label>Họ và Tên:</label>
+                <input type="text" name="name" value="<%= user.name %>" required class="input-field">
+            </div>
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="email" name="email" value="<%= user.email %>" required class="input-field">
+            </div>
+            <button type="submit" class="save-button">Cập nhật</button>
+        </form>
+    </div>
+
+    <%- include('./block/footer.ejs') %>
+    <%- include('./block/script.ejs') %>
+</body>
+</html>

@@ -3,10 +3,12 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Teelab</title>
+    <title>watch</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <%- include('./block/style.ejs') %>
         <style>
             input[type=radio] {
@@ -87,12 +89,163 @@
                         <% product.price=product.price.toLocaleString('vi-VN') %>
                             <%= product.price %> đ
                     </h3>
-                    <div>
+                    <!-- <div>
                         <p><%= product.description %></p>
+                    </div> -->
+                    <h4>Khuyến mãi</h4>
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <th style="border-bottom: 2px solid #000; padding: 10px; font-size: 18px; font-weight: bold; text-align: left;">
+                                    
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            Tặng ngay 1 trong 2 phần quà sau khi mua đồng hồ cơ Tissot (Số lượng có hạn):
+                            <h6 style="color: red;">>Tặng 01 đồng hồ treo tường SEIKO hoặc RHYTHM trị giá lên đến 1 triệu đồng.</h6>
+                            <h6 style="color: red;"></h4>>Tặng 01 dây da ZRC thương hiệu Pháp trị giá lên đến 700.000đ  </h6>
+                            <h6 style="color: red;"></h4>>Ưu đãi MUA 1 TẶNG 1 tặng đồng hồ đến 10 Triệu</h6>     
+                        </tbody>
+                    </table>
+                    
+                    <div style="width: 100%; margin-top: 30px;margin-bottom: 30px; font-family: Arial, sans-serif; border: 1px solid #f0c0a0; padding: 20px; border-radius: 5px;">
+                        <div style="display: flex; justify-content: center; align-items: center; font-size: 18px; font-weight: bold; margin-bottom: 20px;">
+                            <img src="https://via.placeholder.com/20" alt="medal icon" style="margin-right: 10px;" />
+                            CHỨNG NHẬN ĐẠI LÝ
+                        </div>
+                        <div style="display: flex; justify-content: space-around; border: 1px solid #f0c0a0; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+                            <div style="text-align: center;">
+                                <img src="https://via.placeholder.com/50" alt="Free Shipping" style="width: 50px; height: 50px; margin-bottom: 10px;" />
+                                <p>Miễn phí vận chuyển</p>
+                            </div>
+                            <div style="text-align: center;">
+                                <img src="https://via.placeholder.com/50" alt="7 Days Return" style="width: 50px; height: 50px; margin-bottom: 10px;" />
+                                <p>Đổi trả hàng 7 ngày*</p>
+                            </div>
+                            <div style="text-align: center;">
+                                <img src="https://via.placeholder.com/50" alt="100% Authentic" style="width: 50px; height: 50px; margin-bottom: 10px;" />
+                                <p>100% hàng chính hãng</p>
+                            </div>
+                            <div style="text-align: center;">
+                                <img src="https://via.placeholder.com/50" alt="Official Warranty" style="width: 50px; height: 50px; margin-bottom: 10px;" />
+                                <p>Bảo hành chính hãng</p>
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 20px; font-size: 14px;">
+                            Vui lòng để lại số điện thoại, nhân viên <strong>SHOPDONGHO.COM</strong> sẽ liên lạc tư vấn cho quý khách về sản phẩm này!
+                        </div>
+                        <div style="display: flex; justify-content: center; gap: 10px;">
+                            <input
+                                type="text"
+                                placeholder="Số điện thoại..."
+                                style="padding: 10px; font-size: 14px; width: 200px; border: 1px solid #ccc; border-radius: 5px;"
+                            />
+                            <button
+                                style="padding: 10px 20px; font-size: 14px; background-color: black; color: white; border: none; border-radius: 5px; cursor: pointer;"
+                            >
+                                TƯ VẤN
+                            </button>
+                            <button
+                                style="padding: 10px 20px; font-size: 14px; background-color: #e53935; color: white; border: none; border-radius: 5px; cursor: pointer;"
+                            >
+                                <i class="fa fa-phone" aria-hidden="true"></i> 0902.008.009
+                            </button>
+                        </div>
                     </div>
+                    
                     <button class="btn btn-dark" style="width: 200px;height: 50px;border-radius: 10px;"><a href="/addCart/<%= product.id %>" class="no-underline">Thêm giỏ hàng</a></button>
                 </div>
             </div>
+            <table style="width: 60%; border-collapse: collapse;margin-left: 60px;">
+                <thead>
+                    <tr>
+                        <th style="border-bottom: 2px solid #000; padding: 10px; font-size: 18px; font-weight: bold; text-align: left;">
+                            Thông tin sản phẩm
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <% product.description.split('\n').forEach(function(line, index) { %>
+                        <tr>
+                            <td style="border-bottom: 1px solid #ccc; padding: 10px; font-size: 15px; text-align: justify;">
+                                <%= line %>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+            <div style="margin-top: 80px;" class="container">
+                <h5 style="margin-bottom: 40px;">ĐÁNH GIÁ SẢN PHẨM</h5>
+                <div style="margin-top: 10px; font-size: 18px;">
+                    (Đánh giá: 0 lượt)
+                </div>
+                <div>
+                    <i class="fa fa-star" style="margin-right: 10px; color: #e3c01c;"></i>
+                    <i class="fa fa-star" style="margin-right: 10px; color: #e3c01c;"></i>
+                    <i class="fa fa-star" style="margin-right: 10px; color: #e3c01c;"></i>
+                    <i class="fa fa-star" style="margin-right: 10px; color: #e3c01c;"></i>
+                    <i class="fa fa-star" style="margin-right: 10px; color: #e3c01c;"></i> 
+                </div>
+                <div>
+                    <i class="fa fa-star" style="margin-right: 10px; color: #e3c01c;"></i>
+                    <i class="fa fa-star" style="margin-right: 10px; color: #e3c01c;"></i>
+                    <i class="fa fa-star" style="margin-right: 10px; color: #e3c01c;"></i>
+                    <i class="fa fa-star" style="margin-right: 10px; color: #e3c01c;"></i> 
+                </div>
+                <div>
+                    <i class="fa fa-star" style="margin-right: 10px; color: #e3c01c;"></i>
+                    <i class="fa fa-star" style="margin-right: 10px; color: #e3c01c;"></i>
+                    <i class="fa fa-star" style="margin-right: 10px; color: #e3c01c;"></i> 
+                </div>
+                <div>
+                    <i class="fa fa-star" style="margin-right: 10px; color: #e3c01c;"></i>
+                    <i class="fa fa-star" style="margin-right: 10px; color: #e3c01c;"></i>
+                </div>
+                <div>
+                    <i class="fa fa-star" style="margin-right: 10px; color: #e3c01c;"></i> 
+                </div>
+                        <div>
+                            <div>
+                                <i class="fa fa-user-circle" style="font-size: 40px;"></i> 
+                            </div>
+                            <div style="margin-left: 40px;">
+                                <div></div>
+                                <div></div>
+                                <p style="font-size: 18px;"></p>
+                            </div>
+                            <hr />
+                        </div>
+                    <div style="font-size: 18px; color: #14134f;">
+                        Sản phẩm chưa có đánh giá !
+                    </div>
+               
+            </div>
+            <div class="container mt-4" style="background-color: #ffffff; border-radius: 8px; padding: 20px;">
+                <div class="mb-3">
+                    <textarea
+                        class="form-control"
+                        rows="4"
+                        placeholder="Bình luận ..."
+                        style="background-color: #ebe9da; color: #b0b0b0; border: 1px solid #444; border-radius: 8px;">
+                    </textarea>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <select class="form-select" style="background-color: #2c2c2c; color: #b0b0b0; border: 1px solid #444;">
+                            <option>Mới nhất</option>
+                            <option>Cũ nhất</option>
+                            <!-- Thêm tùy chọn khác nếu cần -->
+                        </select>
+                    </div>
+                    <span style="color: #b0b0b0;"> Bình luận</span>
+                    <button class="btn btn-warning" style="border-radius: 8px;">
+                        GỬI
+                    </button>
+                </div>
+            </div>
+            
         </div>
         <!-- Shop Detail End -->
         <%- include('./block/footer.ejs') %>

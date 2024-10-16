@@ -11,6 +11,7 @@ const routeAPIUser = require("./routes/api/user");
 const routeAPIAdmin = require("./routes/api/admin");
 const routeWebUser = require("./routes/web/user");
 const routeWebAdmin = require("./routes/web/admin");
+
 const connection = require("./config/connect");
 connection();
 
@@ -94,6 +95,13 @@ app.use((req, res, next) => {
 });
 app.use("/api/v1", routeAPIUser);
 app.use("/api/v1/admin", routeAPIAdmin);
+
+
+// app.use(function(req, res, next) {
+//   var err = new Error('Not Found');
+//   err.status = 404;
+//   next(err);
+// });
 app.use("/", routeWebUser);
 app.use("/admin", routeWebAdmin);
 app.listen(port, () => {

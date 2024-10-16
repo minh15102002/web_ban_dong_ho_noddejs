@@ -3,33 +3,34 @@ const db = require("../../models/index");
 const addOrder = async (req, res) => {
   try {
     let cart = req.body.cart;
-    if (cart.length === 0) {
+    if (!cart || cart.length === 0) {
       return res.status(400).json({
-        detail: "Vui lòng thêm sản phẩm vào giỏ hàng để đặt hàng !",
+        detail: "Vui lòng thêm sản phẩm vào giỏ hàng để đặt hàng!",
       });
     } else {
-      if (
-        !req.body.user.name ||
-        !req.body.user.phone ||
-        !req.body.user.address
-      ) {
+      // Kiểm tra thông tin người dùng
+      if (!req.body.user.name || !req.body.user.phone || !req.body.user.address) {
         return res.status(400).json({
-          detail: "Vui lòng điền đầy đủ thông tin đặt hàng !",
+          detail: "Vui lòng điền đầy đủ thông tin đặt hàng!",
         });
       } else {
+        // Tính tổng giá trị đơn hàng
         let total = 0;
         for (let i = 0; i < cart.length; i++) {
-          total = cart[i].price * cart[i].quantity;
+          total += cart[i].price * cart[i].quantity;
         }
         let userOrder = req.body.user;
+        // Thêm đơn hàng vào cơ sở dữ liệu
         let orderInsert = await db.Order.create({
-          status: 0,
+          status: userOrder.status || 0,
           name: userOrder.name,
           address: userOrder.address,
           phone: userOrder.phone,
           total: total,
-          UserId: userOrder.user_id,
+          UserId: userOrder.userId,
         });
+
+        // Thêm từng sản phẩm trong giỏ hàng vào bảng Order_Product
         for (let i = 0; i < cart.length; i++) {
           await db.Order_Product.create({
             ProductId: cart[i].id,
@@ -37,16 +38,23 @@ const addOrder = async (req, res) => {
             quantity: cart[i].quantity,
           });
         }
+
+        // Không xóa giỏ hàng ở đây, giỏ hàng vẫn được giữ trong session
         return res.status(200).json({
           success: true,
-          message: "Đặt hàng thành công !",
+          message: "Đặt hàng thành công!",
         });
       }
     }
   } catch (error) {
-    console.log(error);
+    console.log("Error:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Đã xảy ra lỗi khi thêm đơn hàng!",
+    });
   }
 };
+
 
 const checkMaxOrder = async (order_id) => {
   try {

@@ -6,6 +6,7 @@ const authController = require("../../controllers/user/authController");
 const orderController = require("../../controllers/user/orderController");
 const categoryController = require("../../controllers/user/categoryController");
 const brandController = require("../../controllers/user/brandController");
+const accountController = require("../../controllers/user/accountController");
 
 router.get("/products/home", productController.getProductHome);
 
@@ -34,4 +35,5 @@ router.get(
 router.get("/categories/:category_id", categoryController.getProductCategory);
 router.get("/brands/:brand_id", brandController.getProductBrand);
 
+router.get("/account/:userId", accountController.indexAccount);
 module.exports = router;

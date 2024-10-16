@@ -3,7 +3,7 @@ require("dotenv").config();
 const order = async (req, res) => {
   try {
     let dataOrder = {
-      user: req.body,
+      user: req.body ||req.cookies.UserId||req.params.id || req.session.UserId,
       cart: req.session.cart,
     };
     console.log("Data:", dataOrder);
