@@ -10,7 +10,7 @@ const accountController = require("../../controllers/user/accountController");
 const middleware = require("../../middleware/middleware");
 router.get("/products/home", productController.getProductHome);
 
-router.get("/login", middleware.checkAuth);
+router.get("/login",(req,res)=>{res.render("user/login.ejs");});
 router.get("/register", (req, res) => {
     res.render("user/register.ejs");
 });
