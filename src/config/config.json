@@ -14,11 +14,13 @@
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
+  
   "production": {
     "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "password":  "PXzNkzlUrFIoRSpTkNOeIZeVXXlBixjR",
+    "database":  "railway",
+    "host": "mysql.railway.internal",
+    "dialect": "mysql",
+    "port":  3306
   }
 }
