@@ -22,6 +22,8 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: { maxAge: 60000 },
+    secure: process.env.NODE_ENV === 'production', // Đặt true nếu dùng HTTPS trong production
+    httpOnly: true // Chỉ truy cập được qua HTTP(S), không phải JavaScript
   })
 );
 app.use(flash());
