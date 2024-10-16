@@ -7,9 +7,10 @@ const orderController = require("../../controllers/user/orderController");
 const categoryController = require("../../controllers/user/categoryController");
 const brandController = require("../../controllers/user/brandController");
 const accountController = require("../../controllers/user/accountController");
-
+const middleware = require("../../middleware/middleware");
 router.get("/products/home", productController.getProductHome);
 
+router.get("/login", middleware.checkAuth);
 router.post("/register", authController.register);
 router.post("/login", authController.login);
 router.get("/authenticate/:token", authController.authLogin);
