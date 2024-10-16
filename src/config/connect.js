@@ -9,6 +9,9 @@ const sequelize = new Sequelize('railway', 'root', 'FGVfQAJleEDAdusRjcyEbMRxFyRf
   host: 'autorack.proxy.rlwy.net',
   dialect: 'mysql',
   port: 3306,
+  dialectOptions: {
+        connectTimeout: 60000, // 60 giây
+    },
 });
 const connection = async () => {
   try {
