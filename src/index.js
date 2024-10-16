@@ -93,8 +93,8 @@ app.use((req, res, next) => {
   res.locals.adminaddress = req.cookies.adminaddress;
   next();
 });
-app.use("/api/v1", routeAPIUser);
-app.use("/api/v1/admin", routeAPIAdmin);
+// app.use("/api/v1", routeAPIUser);
+// app.use("/api/v1/admin", routeAPIAdmin);
 
 
 // app.use(function(req, res, next) {
