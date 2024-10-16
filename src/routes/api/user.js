@@ -12,7 +12,7 @@ router.get("/products/home", productController.getProductHome);
 
 router.get("/login", middleware.checkAuth);
 router.post("/register", authController.register);
-router.post("/login", authController.login);
+router.post("/loginUser", authController.login);
 router.get("/authenticate/:token", authController.authLogin);
 
 router.post("/order", orderController.addOrder);
