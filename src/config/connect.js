@@ -5,6 +5,7 @@ const { Sequelize } = require("sequelize");
 //   dialect: "mysql",
 // });
 const sequelize = new Sequelize('railway', 'root', 'FGVfQAJleEDAdusRjcyEbMRxFyRfQplS', {
+  //host:'mysql.railway.internal',
   host: 'autorack.proxy.rlwy.net',
   dialect: 'mysql',
   port: 3306,
